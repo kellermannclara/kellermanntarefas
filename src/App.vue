@@ -1,5 +1,6 @@
 <script setup>
 import { computed, ref } from 'vue'
+import TarefasChild from './components/TarefasChild.vue'
 
 let novaTarefa = ref('')
 
@@ -111,8 +112,13 @@ function marcarConcluida(id) {
     </div>
 
     <ul>
-      <li v-for="item in tarefasFiltradas" :key="item.id" @click="marcarConcluida(item.id)"
-        :class="{ concluida: item.status === 'concluida' }">
+      <TarefasChild v-for="item in tarefasFiltradas" :key="item.id" @click="marcarConcluida(item.id)"
+        :class="{ concluida: item.status === 'concluida' }"
+        :key="item.id"
+        :desc="item.desc"
+        :id="item.id"
+        :status="item.status">
+
         {{ item.desc }}
 
         <span>
@@ -120,7 +126,7 @@ function marcarConcluida(id) {
           <button @click.stop="editarTarefa(item)">Editar</button>
         </span>
 
-      </li>
+      </TarefasChild>
     </ul>
 
     <div class="filtro">
