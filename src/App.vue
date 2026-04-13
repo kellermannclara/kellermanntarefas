@@ -58,10 +58,10 @@ function adicionar() {
 
 }
 
-function editarTarefa(item) {
+function editarTarefa(id) {
 
-  alteracao.value = tarefas.value.indexOf(item);
-  novaTarefa.value = item.desc
+  alteracao.value = tarefas.value.indexOf(id);
+  novaTarefa.value = id.desc
 
 }
 
@@ -112,19 +112,22 @@ function marcarConcluida(id) {
     </div>
 
     <ul>
-      <TarefasChild v-for="item in tarefasFiltradas" :key="item.id" @click="marcarConcluida(item.id)"
+      <TarefasChild v-for="item in tarefasFiltradas"
         :class="{ concluida: item.status === 'concluida' }"
         :key="item.id"
         :desc="item.desc"
         :id="item.id"
-        :status="item.status">
+        :status="item.status"
+        @toggle="marcarConcluida"
+        @delete="deletar"
+        @edit="editarTarefa">
 
         {{ item.desc }}
 
-        <span>
+        <!-- <span>
           <button @click.prevent.stop="deletar(item.id)">Deletar</button>
           <button @click.stop="editarTarefa(item)">Editar</button>
-        </span>
+        </span> -->
 
       </TarefasChild>
     </ul>
@@ -214,11 +217,13 @@ function marcarConcluida(id) {
   margin: 5px 0 5px 0;
 }
 
-.container span {
-  /* background-color: aqua; */
+/* .container span {
+  background-color: aqua;
   margin: 10px;
+
+
   
-}
+} */
 
 .concluida {
   text-decoration: line-through;

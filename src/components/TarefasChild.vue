@@ -1,21 +1,24 @@
 <script setup>
-defineProps(['desc', 'id', 'status'])
-defineEmits(['editar', 'excluir'])
+const props = defineProps(['desc', 'id', 'status'])
+const emit = defineEmits(['toggle', 'delete', 'edit'])
 </script>
 
 <template>
 
-    <li v-for="item in tarefasFiltradas" :key="item.id" @click="marcarConcluida(item.id)"
-        :class="{ concluida: item.status === 'concluida' }">
-        {{ item.desc }}
+    <li @click="emit('toggle', id)" :class="{ concluida: status === 'concluida' }">
+        {{ desc }}
 
         <span>
-          <button @click.prevent.stop="deletar(item.id)">Deletar</button>
-          <button @click.stop="editarTarefa(item)">Editar</button>
+            <button @click.stop="emit('delete', id)">Deletar</button>
+            <button @click.stop="emit('edit', id)">Editar</button>
         </span>
-
     </li>
 
 </template>
 
-<style scoped></style>
+<style scoped>
+
+
+
+
+</style>
