@@ -60,8 +60,10 @@ function adicionar() {
 
 function editarTarefa(id) {
 
-  alteracao.value = tarefas.value.indexOf(id);
-  novaTarefa.value = id.desc
+  const posicao = tarefas.value.findIndex(item => item.id === id);
+
+  alteracao.value = posicao;
+  novaTarefa.value = tarefas.value[posicao].desc;
 
 }
 
