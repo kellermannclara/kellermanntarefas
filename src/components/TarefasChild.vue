@@ -18,7 +18,10 @@ const emit = defineEmits(['toggle', 'delete', 'edit'])
 
 <style scoped>
 
-
+li {
+    display: flex;
+    justify-content: space-between;
+}
 
 
 </style>
