@@ -1,6 +1,7 @@
 <script setup>
 import { computed, ref } from 'vue'
 import TarefasChild from './components/TarefasChild.vue'
+import AdicionarChild from './components/AdicionarChild.vue'
 
 let novaTarefa = ref('')
 
@@ -110,7 +111,8 @@ function marcarConcluida(id) {
 
     <div class="add">
       <input type="text" v-model="novaTarefa">
-      <button @click="adicionar">Adicionar</button>
+      <!-- <button @click="adicionar">Adicionar</button> -->
+      <AdicionarChild @Adicionar="adicionar">Adicionar</AdicionarChild>
     </div>
 
     <ul>
